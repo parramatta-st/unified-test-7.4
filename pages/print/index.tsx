@@ -194,9 +194,9 @@ export default function PrintPage() {
         printer: folderMeta.printer,
         ok: true,
         material_id: file.id,
-        type: file._typeLabel || file.type || file.item_type || 'File',
+        type: file._nameLabel || file.name || file.item_name || file.fileName || file._typeLabel || file.type || file.item_type || 'File',
         name: file._nameLabel || file.name || file.item_name || file.fileName || '',
-        types: [file._typeLabel || file.type || file.item_type || 'File'],
+        types: [file._nameLabel || file.name || file.item_name || file.fileName || file._typeLabel || file.type || file.item_type || 'File'],
         names: [file._nameLabel || file.name || file.item_name || file.fileName || ''],
       });
       setMsg('Sent to printer.');
@@ -230,7 +230,7 @@ export default function PrintPage() {
         const it: any = files[i];
         setBusySubtitle(`Printing ${i + 1} of ${files.length}: ${it._nameLabel || it.fileName}`);
         await doPrint(it.id, meta);
-        printedTypes.push(it._typeLabel || it.type || it.item_type || 'File');
+        printedTypes.push(it._nameLabel || it.name || it.item_name || it.fileName || it._typeLabel || it.type || it.item_type || 'File');
         printedNames.push(it._nameLabel || it.name || it.item_name || it.fileName || '');
         printedIds.push(it.id);
       }

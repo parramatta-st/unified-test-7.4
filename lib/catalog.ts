@@ -111,7 +111,7 @@ function parseFileSort(fileName: string, hasLessons: boolean): SortResult {
   const mL = upper.match(/^(?:L\s*(\d{1,2})\b|LESSON\s*(\d{1,2})\b)/);
   if (mL) {
     const n = parseInt(mL[1] || mL[2], 10);
-    return { typeLabel: 'Lesson', nameLabel: `Lesson #${n}`, sortKey: [0, n, 0, cleaned] };
+    return { typeLabel: 'Lesson', nameLabel: `Lesson ${n}`, sortKey: [0, n, 0, cleaned] };
   }
   const mR = upper.match(/^(?:R\s*(\d{1,2})\b|REVISION\s*(\d{1,2})\b|REV\s*(\d{1,2})\b)/);
   if (mR) {
@@ -121,7 +121,7 @@ function parseFileSort(fileName: string, hasLessons: boolean): SortResult {
       return { typeLabel: 'File', nameLabel: cleaned, sortKey: [3, 0, 0, cleaned] };
     }
     const n = parseInt(mR[1] || mR[2] || mR[3], 10);
-    return { typeLabel: 'Revision', nameLabel: `Revision #${n}`, sortKey: [0, n, 1, cleaned] };
+    return { typeLabel: 'Revision', nameLabel: `Revision ${n}`, sortKey: [0, n, 1, cleaned] };
   }
   if (upper.includes('ASSESSMENT') || upper === 'A' || upper.startsWith('A ')) {
     return { typeLabel: 'Assessment', nameLabel: 'Assessment', sortKey: [1, 0, 0, cleaned] };
@@ -129,7 +129,7 @@ function parseFileSort(fileName: string, hasLessons: boolean): SortResult {
   const mH = upper.match(/^(?:H\s*(\d{1,2})\b|HW\s*(\d{1,2})\b|HOMEWORK\s*(\d{1,2})\b|HWK\s*(\d{1,2})\b)/);
   if (mH) {
     const n = parseInt(mH[1] || mH[2] || mH[3] || mH[4], 10);
-    return { typeLabel: 'Homework', nameLabel: `Homework #${n}`, sortKey: [2, n, 0, cleaned] };
+    return { typeLabel: 'Homework', nameLabel: `Homework ${n}`, sortKey: [2, n, 0, cleaned] };
   }
   return { typeLabel: 'File', nameLabel: cleaned, sortKey: [3, 0, 0, cleaned] };
 }
